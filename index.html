@@ -69,9 +69,14 @@ nav.main a:hover{border-color:var(--gold)}
 .copy-over{position:absolute;left:0;right:0;bottom:7vh;z-index:3;text-align:center;color:#f7f2e9;padding:0 var(--s4);transition:opacity .2s}
 .copy-over h1{font-size:clamp(2.3rem,6vw,4.8rem)}
 .copy-over p{max-width:34em;margin:var(--s3) auto 0;color:#ded6c8}
-.reveal-copy{position:absolute;inset:auto 0 9vh 0;z-index:3;text-align:center;color:#fff;opacity:0;padding:0 var(--s4);transition:opacity .2s}
+.reveal-copy{isolation:isolate;position:absolute;inset:auto 0 9vh 0;z-index:3;text-align:center;color:#fff;opacity:0;padding:0 var(--s4);transition:opacity .2s}
 .reveal-copy h2{font-size:clamp(2rem,5vw,3.8rem)}
 .reveal-copy .cta{justify-content:center;margin-top:var(--s4)}
+.reveal-copy::before{content:"";position:absolute;left:50%;top:50%;width:min(980px,96vw);height:150%;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(12,10,8,.72),rgba(12,10,8,0));z-index:-1;pointer-events:none}
+.reveal-copy .rating{display:inline-flex;align-items:center;gap:10px;margin:var(--s4) 0 0;padding:10px 18px;border-radius:999px;background:rgba(12,10,8,.78);color:#fff;font-size:1.05rem;font-weight:500}
+.reveal-copy .rating .stars{color:#e9c46a;letter-spacing:2px;font-size:1.1rem}
+.reveal-copy .rating b{font-weight:700}
+@media (max-width:640px){.reveal-copy{bottom:calc(9vh + 76px)}.reveal-copy .rating{font-size:.95rem;padding:8px 14px;white-space:nowrap}.reveal-copy .rating .stars{font-size:1rem;letter-spacing:1px}}
 .scroll-hint{position:absolute;top:var(--s4);left:50%;transform:translateX(-50%);z-index:3;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#bdb4a5}
 .addon-badge{position:absolute;top:var(--s4);right:var(--s4);z-index:4;background:var(--gold);color:#120f0a;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px}
 @media (prefers-reduced-motion:reduce){.stage{height:auto}.stick{position:relative;height:auto;min-height:90vh}.door{transform:rotateY(-80deg)}.copy-over{opacity:0}.reveal-copy{opacity:1}}
@@ -191,9 +196,9 @@ footer a{color:#fff}
    <p>Entry doors, windows and hardware from brands like Therma-Tru, Pella and Emtek, chosen with you and fitted to your home.</p>
   </div>
   <div class="reveal-copy" id="revealCopy">
-   <p class="over">5.0 stars from 317 Google reviews</p>
    <h2>Come see them in person.</h2>
    <div class="cta"><a class="btn btn-gold" href="#visit">Book a consultation</a><a class="btn btn-line" href="tel:+15165174328">Call (516) 517-4328</a></div>
+   <p class="rating"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> from 317 Google reviews</p>
   </div>
  </div>
 </div>
