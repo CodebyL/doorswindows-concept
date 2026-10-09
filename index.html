@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Doors &amp; Windows (website concept)</title>
+<meta name="description" content="Website concept for the Doors &amp; Windows showroom in Albertson, NY: entry, interior, garage and storm doors, windows and hardware from leading brands.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --black:#0e0d0b;--char:#1a1815;--stone:#f3efe8;--bone:#faf8f4;--line:#e0d8ca;--ink:#171512;--soft:#5e574d;--gold:#b8893a;--gold-l:#d9b46a;
+ --s1:4px;--s2:8px;--s3:16px;--s4:24px;--s5:32px;--s6:48px;--s7:72px;--s8:120px;
+ --wrap:1200px;
+ --serif:"Bodoni Moda",Didot,Georgia,serif;--sans:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--s4)}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#000;padding:var(--s2) var(--s3);z-index:99}
+.skip:focus{left:var(--s3);top:var(--s3)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;margin:0;letter-spacing:-.01em}
+.over{font-size:.76rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 var(--s3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s5);font:600 .95rem var(--sans);letter-spacing:.04em;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .25s,color .25s}
+.btn-gold{background:var(--gold);color:#120f0a}.btn-gold:hover{background:var(--gold-l)}
+.btn-line{border-color:currentColor;color:inherit;background:transparent}
+
+.concept{background:var(--stone);color:var(--ink);text-align:center;font-size:.8rem;padding:var(--s2) var(--s3)}
+.concept a{font-weight:700}
+header.site{position:sticky;top:0;z-index:40;background:rgba(14,13,11,.92);backdrop-filter:blur(8px);color:#f4efe6}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);min-height:76px}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.logo b{font-family:var(--serif);font-weight:700;font-size:1.5rem;letter-spacing:.02em}
+.logo b i{font-style:normal;color:var(--gold)}
+.logo small{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:#a79f92;margin-top:6px}
+nav.main ul{display:flex;gap:var(--s5);list-style:none;margin:0;padding:0}
+nav.main a{text-decoration:none;font-weight:500;font-size:.95rem;padding:var(--s2) 0;border-bottom:1px solid transparent}
+nav.main a:hover{border-color:var(--gold)}
+.menu-btn{display:none;min-height:44px;min-width:48px;padding:0 var(--s3);border:1.5px solid #555;background:none;color:#fff;font:600 .9rem var(--sans);cursor:pointer}
+@media (max-width:920px){
+ nav.main{display:none;position:absolute;top:100%;left:0;right:0;background:var(--black)}
+ nav.main.open{display:block}
+ nav.main ul{flex-direction:column;gap:0;padding:var(--s2) var(--s4) var(--s4)}
+ nav.main a{display:block;padding:var(--s3) 0;border-bottom:1px solid #2a2722}
+ .menu-btn{display:inline-flex;align-items:center}
+ .hd .btn{display:none}
+}
+
+/* cinematic door: tall scroll stage */
+.stage{height:260vh;position:relative;background:var(--black)}
+.stick{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;perspective:1600px}
+.behind{position:absolute;inset:0}
+.behind img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:transform .1s linear}
+.behind::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.42)}
+.frame{position:relative;width:min(56vh,82vw);height:min(86vh,130vw);max-height:760px;border:14px solid #2a241c;box-shadow:0 0 0 2px #4a3f2f,0 40px 80px rgba(0,0,0,.6);z-index:2}
+.door{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;background:#1c1915;
+ background-image:linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:6px 100%;will-change:transform}
+.door .panel{position:absolute;left:12%;right:12%;border:2px solid #3b3328;box-shadow:inset 0 0 0 6px #221e19,inset 0 0 0 8px #3b3328}
+.door .p1{top:7%;height:38%}.door .p2{top:52%;height:40%}
+.door .glass{position:absolute;left:22%;right:22%;top:13%;height:26%;background:linear-gradient(160deg,rgba(217,180,106,.35),rgba(217,180,106,.06));border:1px solid var(--gold)}
+.door .handle{position:absolute;right:9%;top:50%;width:10px;height:120px;margin-top:-60px;background:linear-gradient(90deg,var(--gold),var(--gold-l),var(--gold));border-radius:6px;box-shadow:0 4px 10px rgba(0,0,0,.5)}
+.copy-over{position:absolute;left:0;right:0;bottom:7vh;z-index:3;text-align:center;color:#f7f2e9;padding:0 var(--s4);transition:opacity .2s}
+.copy-over h1{font-size:clamp(2.3rem,6vw,4.8rem)}
+.copy-over p{max-width:34em;margin:var(--s3) auto 0;color:#ded6c8}
+.reveal-copy{position:absolute;inset:auto 0 9vh 0;z-index:3;text-align:center;color:#fff;opacity:0;padding:0 var(--s4);transition:opacity .2s}
+.reveal-copy h2{font-size:clamp(2rem,5vw,3.8rem)}
+.reveal-copy .cta{justify-content:center;margin-top:var(--s4)}
+.scroll-hint{position:absolute;top:var(--s4);left:50%;transform:translateX(-50%);z-index:3;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#bdb4a5}
+.addon-badge{position:absolute;top:var(--s4);right:var(--s4);z-index:4;background:var(--gold);color:#120f0a;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px}
+@media (prefers-reduced-motion:reduce){.stage{height:auto}.stick{position:relative;height:auto;min-height:90vh}.door{transform:rotateY(-80deg)}.copy-over{opacity:0}.reveal-copy{opacity:1}}
+.cta{display:flex;flex-wrap:wrap;gap:var(--s3)}
+
+/* intro band */
+.band{background:var(--black);color:#efe8dc;padding:var(--s6) 0;border-top:1px solid #2a2722}
+.band .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4)}
+.band b{display:block;font-family:var(--serif);font-size:2.3rem;font-weight:500;color:#fff;line-height:1.1}
+.band span{font-size:.9rem;color:#a79f92}
+@media (max-width:820px){.band .wrap{grid-template-columns:1fr 1fr;row-gap:var(--s5)}}
+
+section{padding:var(--s8) 0}
+@media (max-width:760px){section{padding:var(--s7) 0}}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:end;margin-bottom:var(--s6)}
+.head h2{font-size:clamp(2.2rem,4.6vw,3.8rem)}
+.head p{margin:0;color:var(--soft)}
+@media (max-width:820px){.head{grid-template-columns:1fr;gap:var(--s3)}}
+
+/* collections */
+.col-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+.col{position:relative;overflow:hidden;text-decoration:none;color:#fff;aspect-ratio:3/4;background:#ccc}
+.col img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.col:hover img{transform:scale(1.05)}
+.col::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.72))}
+.col span{position:absolute;left:var(--s4);bottom:var(--s4);z-index:2;font-family:var(--serif);font-size:1.6rem}
+.col.tall{grid-row:span 2;aspect-ratio:auto}
+@media (max-width:900px){.col-grid{grid-template-columns:1fr 1fr}.col.tall{grid-row:auto;aspect-ratio:3/4}}
+
+/* recent work */
+.work{background:var(--stone)}
+.work-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;gap:var(--s3)}
+.work figure{margin:0}
+.work figure img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.work figcaption{font-size:.9rem;color:var(--soft);padding-top:var(--s2)}
+.work .w1{grid-row:span 2}.work .w1 img{aspect-ratio:auto;height:calc(100% - 34px)}
+@media (max-width:860px){.work-grid{grid-template-columns:1fr 1fr}.work .w1{grid-column:span 2;grid-row:auto}.work .w1 img{aspect-ratio:4/3;height:auto}}
+@media (max-width:480px){.work-grid{grid-template-columns:1fr}.work .w1{grid-column:auto}}
+
+/* brands */
+.brands{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);justify-content:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--s5) 0}
+.brands span{font-family:var(--serif);font-size:1.45rem;color:var(--ink)}
+
+/* add-on explainer */
+.addon{background:var(--black);color:#efe8dc}
+.addon .head p{color:#bdb4a5}
+.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #2f2b25}
+.addon-grid div{padding:var(--s5) var(--s4) var(--s5) 0;border-right:1px solid #2f2b25}
+.addon-grid div:last-child{border-right:0}
+.addon-grid div+div{padding-left:var(--s4)}
+.addon-grid b{display:block;font-family:var(--serif);font-weight:500;font-size:1.4rem;color:#fff;margin-bottom:var(--s2)}
+.price{font-family:var(--serif);font-size:2.6rem;color:var(--gold-l);margin-top:var(--s5)}
+.price small{display:block;font-family:var(--sans);font-size:.9rem;color:#a79f92}
+.demo-note{font-size:.85rem;color:var(--soft);margin:var(--s3) 0 0}
+.addon .demo-note{color:#a79f92}
+@media (max-width:820px){.addon-grid{grid-template-columns:1fr}.addon-grid div{border-right:0;border-bottom:1px solid #2f2b25;padding-left:0!important}}
+
+/* visit */
+.v-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7)}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right}
+.hours .shut td{color:var(--soft)}
+form.card{background:#fff;border:1px solid var(--line);padding:var(--s5)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.field{margin-bottom:var(--s3)}
+label{display:block;font-weight:600;font-size:.88rem;margin-bottom:var(--s1)}
+input,select,textarea{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border:1px solid #bfb5a3;background:var(--bone);color:var(--ink);min-height:50px;border-radius:0}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--ink)}
+textarea{min-height:100px;resize:vertical}
+.err{color:#a3211b;font-size:.85rem;font-weight:600;margin-top:4px}
+.ok{background:#fff;border:1px solid var(--line);padding:var(--s6) var(--s5)}
+.ok h3{font-size:2.2rem;margin-bottom:var(--s3)}
+@media (max-width:860px){.v-grid{grid-template-columns:1fr;gap:var(--s6)}}
+@media (max-width:520px){.row2{grid-template-columns:1fr}form.card{padding:var(--s4)}}
+
+footer{background:var(--black);color:#bdb4a5;padding:var(--s6) 0 var(--s5);font-size:.9rem}
+.ft{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s4);padding-bottom:var(--s4);border-bottom:1px solid #2a2722}
+footer b{color:#fff;font-family:var(--serif);font-weight:500;font-size:1.3rem}
+footer a{color:#fff}
+.dis{font-size:.78rem;color:#857d70;margin-top:var(--s4);max-width:74em}
+.mobile-call{display:none}
+@media (max-width:640px){.mobile-call{display:flex;position:fixed;left:var(--s3);right:var(--s3);bottom:var(--s3);z-index:50}body{padding-bottom:84px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="concept">Website concept by <a href="https://www.lisettecolon.com">Lisette Colon</a>. A sample, not the official Doors &amp; Windows site.</div>
+<header class="site">
+ <div class="wrap hd">
+  <a class="logo" href="#top" aria-label="Golden Doors and Windows, home"><b>Golden <i>Doors</i></b><small>Doors &amp; Windows &middot; Albertson</small></a>
+  <nav class="main" id="nav" aria-label="Main"><ul>
+   <li><a href="#collections">Collections</a></li>
+   <li><a href="#work">Recent work</a></li>
+   <li><a href="#brands">Brands</a></li>
+   <li><a href="#visit">Showroom</a></li>
+  </ul></nav>
+  <div style="display:flex;gap:8px;align-items:center">
+   <a class="btn btn-gold" href="#visit" style="min-height:44px;padding:0 var(--s4)">Book a consultation</a>
+   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  </div>
+ </div>
+</header>
+
+<main id="main">
+<div class="stage" id="top">
+ <div class="stick">
+  <div class="behind"><img id="behindImg" src="https://www.idoorswindows.com/web/image/6676-155fc8d7/-_Featuded_Image.webp" alt="" width="1920" height="692"></div>
+  <span class="addon-badge">Featured add-on: cinematic scroll</span>
+  <span class="scroll-hint" aria-hidden="true">Scroll to open</span>
+  <div class="frame" aria-hidden="true">
+   <div class="door" id="door"><span class="panel p1"></span><span class="panel p2"></span><span class="glass"></span><span class="handle"></span></div>
+  </div>
+  <div class="copy-over" id="copyOver">
+   <p class="over">Albertson showroom &middot; 830 Willis Ave</p>
+   <h1>The first thing guests touch.</h1>
+   <p>Entry doors, windows and hardware from brands like Therma-Tru, Pella and Emtek, chosen with you and fitted to your home.</p>
+  </div>
+  <div class="reveal-copy" id="revealCopy">
+   <p class="over">5.0 stars from 317 Google reviews</p>
+   <h2>Come see them in person.</h2>
+   <div class="cta"><a class="btn btn-gold" href="#visit">Book a consultation</a><a class="btn btn-line" href="tel:+15165174328">Call (516) 517-4328</a></div>
+  </div>
+ </div>
+</div>
+
+<div class="band">
+ <div class="wrap">
+  <div><b>5.0</b><span>From 317 Google reviews</span></div>
+  <div><b>15+</b><span>Brands carried</span></div>
+  <div><b>7</b><span>Collections, doors to hardware</span></div>
+  <div><b>Albertson</b><span>Showroom on Willis Avenue</span></div>
+ </div>
+</div>
+
+<section id="collections">
+ <div class="wrap">
+  <div class="head">
+   <div><p class="over">Collections</p><h2>Every way into a home.</h2></div>
+   <p>From a fiberglass front door to a sliding wall of glass. Each one is sized and finished for your opening, your style and your budget.</p>
+  </div>
+  <div class="col-grid">
+   <a class="col tall" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/16/cover_image" alt="" width="500" height="388" loading="lazy"><span>Exterior doors</span></a>
+   <a class="col" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/9/cover_image" alt="" width="670" height="456" loading="lazy"><span>Garage doors</span></a>
+   <a class="col" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/13/cover_image" alt="" width="825" height="825" loading="lazy"><span>Hardware</span></a>
+   <a class="col" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/15/cover_image" alt="" width="1440" height="1920" loading="lazy"><span>Security doors</span></a>
+   <a class="col" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/11/cover_image" alt="" width="674" height="778" loading="lazy"><span>Sliding doors</span></a>
+   <a class="col" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/12/cover_image" alt="" width="786" height="768" loading="lazy"><span>Storm doors</span></a>
+   <a class="col" href="#visit"><img src="https://www.idoorswindows.com/web/image/product.public.category/10/cover_image" alt="" width="1024" height="1024" loading="lazy"><span>Windows</span></a>
+  </div>
+ </div>
+</section>
+
+<section class="work" id="work">
+ <div class="wrap">
+  <div class="head">
+   <div><p class="over">Recent work</p><h2>From the project file.</h2></div>
+   <p>A few of the latest doors and windows from the current website. On the finished site each one opens into a full project page.</p>
+  </div>
+  <div class="work-grid">
+   <figure class="w1"><img src="https://www.idoorswindows.com/web/image/1108-0c51d672/utah-floor-to-ceiling-windows.webp" alt="Modern floor-to-ceiling windows" width="690" height="1035" loading="lazy"><figcaption>Modern and contemporary windows</figcaption></figure>
+   <figure><img src="https://www.idoorswindows.com/web/image/1106-d18da08d/mv_homeimage1.webp" alt="Fiberglass exterior front door" width="690" height="440" loading="lazy"><figcaption>Fiberglass exterior door</figcaption></figure>
+   <figure><img src="https://www.idoorswindows.com/web/image/1109-9d56ac75/iwd-beautiful-wrought-iron-entry-doors.webp" alt="Custom wrought iron entry doors" width="690" height="459" loading="lazy"><figcaption>Custom iron doors</figcaption></figure>
+   <figure><img src="https://www.idoorswindows.com/web/image/1105-a1f97c11/make-your-apartment-look-expensive-with-modern-european-doors.webp" alt="Modern European interior door" width="690" height="517" loading="lazy"><figcaption>Modern European interior door</figcaption></figure>
+   <figure><img src="https://www.idoorswindows.com/web/image/1107-967f29c7/file.webp" alt="New garage door" width="460" height="320" loading="lazy"><figcaption>Garage door</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section id="brands" style="padding-bottom:var(--s7)">
+ <div class="wrap">
+  <div class="head" style="margin-bottom:var(--s5)">
+   <div><p class="over">Brands we carry</p><h2>Names you can trust.</h2></div>
+   <p>Listed on the current website. Ask in the showroom about lead times and finishes for each line.</p>
+  </div>
+  <div class="brands"><span>Therma-Tru</span><span>Pella</span><span>Masonite</span><span>Larson</span><span>Clopay</span><span>Alside</span><span>Emtek</span><span>Baldwin</span><span>Reeb</span><span>Nova</span><span>Loewen</span></div>
+ </div>
+</section>
+
+<section class="addon" id="addon">
+ <div class="wrap">
+  <div class="head">
+   <div><p class="over">About the opening scene</p><h2>A door that opens as you scroll.</h2></div>
+   <p>The top of this page is the featured add-on. Instead of a still photo, visitors push the door open themselves, and the showroom appears behind it.</p>
+  </div>
+  <div class="addon-grid">
+   <div><b>Built for your brand</b>The door can be modeled on a best seller, in your finishes and hardware.</div>
+   <div><b>Fast on phones</b>Made with code, not a heavy video, so it loads quickly and stays sharp.</div>
+   <div><b>Accessible</b>Visitors who turn off motion see the open door and the message without the animation.</div>
+  </div>
+  <p class="price">from $600<small>one-time, added to the website package, plus video tool fees at cost if footage is used</small></p>
+  <p class="demo-note"><b>Sample feature.</b> The door here is an illustration and the photo behind it is from the current website.</p>
+ </div>
+</section>
+
+<section id="visit">
+ <div class="wrap v-grid">
+  <div>
+   <p class="over">Showroom</p>
+   <h2 style="font-size:clamp(2.1rem,4.4vw,3.4rem);margin-bottom:var(--s4)">830 Willis Ave, Albertson, NY 11507</h2>
+   <p style="margin:0 0 var(--s4)"><a href="tel:+15165174328" style="font-family:var(--serif);font-size:2rem;text-decoration:none">(516) 517-4328</a></p>
+   <table class="hours" aria-label="Showroom hours"><tbody>
+    <tr><td>Monday to Thursday</td><td>9 AM to 7 PM</td></tr>
+    <tr><td>Friday</td><td>9 AM to 5 PM</td></tr>
+    <tr class="shut"><td>Saturday</td><td>Closed</td></tr>
+    <tr><td>Sunday</td><td>10 AM to 6 PM</td></tr>
+   </tbody></table>
+  </div>
+  <div>
+   <form class="card" id="cnForm" data-demo="cnOk" novalidate>
+    <h3 style="font-size:1.8rem;margin-bottom:var(--s4)">Book a consultation</h3>
+    <div class="row2">
+     <div class="field"><label for="c-name">Name</label><input id="c-name" autocomplete="name" required><div class="err" hidden>Please add your name.</div></div>
+     <div class="field"><label for="c-phone">Phone</label><input id="c-phone" type="tel" autocomplete="tel" required><div class="err" hidden>Please add a phone number.</div></div>
+    </div>
+    <div class="row2">
+     <div class="field"><label for="c-what">Interested in</label><select id="c-what"><option>Entry door</option><option>Windows</option><option>Interior doors</option><option>Garage door</option><option>Storm or security door</option><option>Hardware</option><option>A larger project</option></select></div>
+     <div class="field"><label for="c-how">Where</label><select id="c-how"><option>Visit the showroom</option><option>Measure at my home</option></select></div>
+    </div>
+    <div class="field"><label for="c-notes">Tell us about the project</label><textarea id="c-notes"></textarea></div>
+    <button class="btn btn-gold" type="submit" style="width:100%">Request a time</button>
+    <p class="demo-note"><b>Demo form.</b> This is a website concept. Nothing is sent or saved.</p>
+   </form>
+   <div class="ok" id="cnOk" hidden tabindex="-1">
+    <h3>Demo complete.</h3>
+    <p>On the real site this request would go straight to the showroom. Nothing was sent or saved.</p>
+    <button class="btn btn-line" type="button" data-again="cnForm">Start over</button>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="ft"><div><b>Golden Doors &middot; Doors &amp; Windows</b><p style="margin:4px 0 0">830 Willis Ave, Albertson, NY 11507</p></div><div><p style="margin:0"><a href="tel:+15165174328">(516) 517-4328</a></p></div></div>
+  <p class="dis">Independent website concept designed by Lisette Colon. Not affiliated with or approved by Doors &amp; Windows or Golden Doors. Photos, collections and brands are from the business's current website (idoorswindows.com); address, hours and rating are from its public Google listing, checked October 2026. Brand names belong to their owners. The scrolling door is a sample feature.</p>
+ </div>
+</footer>
+<a class="btn btn-gold mobile-call" href="tel:+15165174328">Call the showroom</a>
+
+<script>
+(function(){
+var d=document,$$=function(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))};
+var mb=d.querySelector(".menu-btn"),nav=d.getElementById("nav");
+mb.addEventListener("click",function(){var o=nav.classList.toggle("open");mb.setAttribute("aria-expanded",o);mb.textContent=o?"Close":"Menu";});
+$$("#nav a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("open");mb.setAttribute("aria-expanded",false);mb.textContent="Menu";});});
+/* scroll-driven door */
+var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var stage=d.querySelector(".stage"),door=d.getElementById("door"),img=d.getElementById("behindImg"),co=d.getElementById("copyOver"),rc=d.getElementById("revealCopy"),tick=false;
+function upd(){tick=false;var r=stage.getBoundingClientRect(),total=stage.offsetHeight-window.innerHeight;var p=Math.min(1,Math.max(0,-r.top/total));
+ var open=Math.min(1,p/0.7);door.style.transform="rotateY("+(-100*open)+"deg)";img.style.transform="scale("+(1.18-0.18*p)+")";
+ co.style.opacity=String(Math.max(0,1-open*2.2));rc.style.opacity=String(Math.max(0,(open-0.6)/0.4));rc.style.pointerEvents=open>0.8?"auto":"none";}
+if(!reduce){window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});window.addEventListener("resize",upd);upd();}
+$$("form[data-demo]").forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var bad=null;$$("[required]",f).forEach(function(i){var ok=!!i.value.trim();var er=i.parentNode.querySelector(".err");if(er)er.hidden=ok;i.setAttribute("aria-invalid",!ok);if(!ok&&!bad)bad=i;});if(bad){bad.focus();return;}var ok=d.getElementById(f.getAttribute("data-demo"));f.hidden=true;ok.hidden=false;ok.focus();});});
+$$("[data-again]").forEach(function(b){b.addEventListener("click",function(){var f=d.getElementById(b.getAttribute("data-again"));f.reset();b.closest(".ok").hidden=true;f.hidden=false;f.querySelector("input").focus();});});
+})();
+</script>
+</body>
+</html>
