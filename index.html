@@ -73,7 +73,12 @@ nav.main a:hover::after,nav.main a[aria-current]::after{transform:translateX(-50
 
 /* about */
 .about{background:var(--stone);color:#fff;padding-block:40px 90px}
-.about .grid{display:grid;grid-template-columns:.7fr 2fr;gap:40px;align-items:start}
+.about .grid{display:grid;grid-template-columns:minmax(220px,.8fr) 2fr;gap:clamp(32px,5vw,64px);align-items:center}
+.about .aside{display:grid;gap:18px;justify-items:start}
+.about .aph{margin:0;width:100%;border-radius:16px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 24px 50px rgba(0,0,0,.22)}
+.about .aph img{width:100%;height:100%;object-fit:cover;object-position:40% 50%;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.about .aph:hover img{transform:scale(1.05)}
+.about .addr{font-size:14px;color:#EFEFE6;line-height:1.5;border-left:2px solid var(--gold);padding-left:12px}
 .about .pill{background:rgba(255,255,255,.85);color:var(--ink)}
 .about h2{font-size:clamp(30px,3.6vw,48px);letter-spacing:-.03em;line-height:1.08}
 .about h2 span{color:#DCDCCC}
@@ -106,9 +111,10 @@ html:not(.anim) .leaf{display:none}
 @media (max-width:640px){.tile.cta small{display:block}.tile.cta b{font-size:20px}}
 /* showroom */
 .show{background:var(--olive);color:#fff;padding-block:90px}
-.show .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.show .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:stretch}
 .show .ph{position:relative}
-.show .ph .a{border-radius:16px;overflow:hidden;aspect-ratio:16/10}
+.show .ph{min-height:440px}
+.show .ph .a{border-radius:16px;overflow:hidden;height:calc(100% - 34px)}
 .show .ph .a img{width:100%;height:100%;object-fit:cover}
 .show .ph .b{position:absolute;right:-20px;bottom:-34px;width:42%;border:6px solid var(--olive);border-radius:14px;overflow:hidden;transform:rotate(-3deg)}
 .show .ph .b img{width:100%;aspect-ratio:4/3;object-fit:cover}
@@ -126,8 +132,19 @@ html:not(.anim) .leaf{display:none}
 /* brands */
 .brands{padding-block:46px;border-bottom:1px solid var(--line);overflow:hidden}
 .brands p{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:center}
-.brow{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 34px;margin-top:18px}
-.brow span{font-size:clamp(18px,2vw,24px);font-weight:700;letter-spacing:-.02em;color:#3F4136}
+.brands{padding-block:56px}
+.bhead{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brands .bhead p{text-align:left}
+.bctl{display:flex;gap:8px}
+.bctl button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.bctl button:hover{background:var(--olive);border-color:var(--olive);color:#fff}
+.bctl .py{display:none}.bctl [aria-pressed="true"] .pz{display:none}.bctl [aria-pressed="true"] .py{display:block}
+.bvp{margin-top:24px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.btrack{list-style:none;padding:6px 0;margin:0;display:flex;gap:18px;width:max-content;will-change:transform}
+.btrack li{flex:none;width:210px;height:116px;background:#fff;border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;padding:18px 22px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.btrack li:hover{border-color:var(--gold);box-shadow:0 12px 26px rgba(47,51,42,.12);transform:translateY(-3px)}
+.btrack img{max-width:100%;max-height:72px;width:auto;height:auto;object-fit:contain}
+@media (max-width:640px){.btrack li{width:160px;height:96px;padding:14px}.btrack img{max-height:58px}.bhead{flex-wrap:wrap}}
 
 /* process */
 .proc{padding-block:90px}
@@ -224,6 +241,8 @@ footer .bot a{color:#A9ABB1;text-decoration:none}
 
 /* responsive */
 @media (max-width:1020px){
+ .about .aph{aspect-ratio:16/9}
+ .about .aside{grid-template-columns:1fr}
  nav.main{display:none}.menubtn{display:inline-flex}
  header.top .wrap>.btn{display:none}
  .hero .inner{grid-template-columns:1fr;padding-bottom:100px}
@@ -231,6 +250,7 @@ footer .bot a{color:#A9ABB1;text-decoration:none}
  .about .grid,.show .grid,.proc .grid,.book .grid{grid-template-columns:1fr}
  .cgrid{grid-template-columns:repeat(2,1fr)}
  .show .ph .b{right:0}
+ .show .ph{min-height:0}.show .ph .a{height:auto;aspect-ratio:16/10}
  .show .grid{gap:70px}
  .rv .head{grid-template-columns:1fr}
  .rgrid{grid-template-columns:1fr 1fr}.rc:first-child{grid-column:1/-1}
@@ -291,12 +311,12 @@ footer .bot a{color:#A9ABB1;text-decoration:none}
 <section class="about" aria-labelledby="ab-h">
  <div class="wrap">
   <div class="grid">
-   <div data-rv><span class="pill">About us</span></div>
+   <div class="aside" data-rv><span class="pill">About us</span><figure class="aph"><img src="img/window-install.jpg" alt="Installer fitting a new window into its frame" loading="lazy"></figure><p class="addr">830 Willis Ave<br>Albertson, NY 11507</p></div>
    <div>
     <h2 id="ab-h" data-rv>A women-owned showroom on Willis Avenue <span>where you can see and feel the door before it goes on your home, then have it measured and installed.</span></h2>
     <div class="facts">
      <div data-rv><b>5.0</b><span>Google rating from 317 reviews</span></div>
-     <div data-rv><b>11</b><span>Brands listed on the current website</span></div>
+     <div data-rv><b>13</b><span>Brands shown on the current website</span></div>
      <div data-rv><b>7</b><span>Collections, doors to hardware</span></div>
     </div>
    </div>
@@ -339,9 +359,9 @@ footer .bot a{color:#A9ABB1;text-decoration:none}
  </div>
 </section>
 
-<section class="brands" aria-label="Brands">
- <div class="wrap"><p>Brands listed on the current website</p>
-  <div class="brow"><span>Therma-Tru</span><span>Pella</span><span>Masonite</span><span>Larson</span><span>Clopay</span><span>Alside</span><span>Emtek</span><span>Baldwin</span><span>Reeb</span><span>Nova</span><span>Loewen</span></div></div>
+<section class="brands" aria-labelledby="br-h">
+ <div class="wrap bhead"><p id="br-h">Brands shown on the current website</p><div class="bctl"><button type="button" data-bprev aria-label="Previous brands"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-bpause aria-pressed="false" aria-label="Pause brand carousel"><svg class="pz" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg><svg class="py" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg></button><button type="button" data-bnext aria-label="Next brands"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+ <div class="bvp" data-bvp><ul class="btrack" data-btrack><li><img src="img/logos/thermatru.png" alt="Therma-Tru Doors" loading="lazy"></li><li><img src="img/logos/pella.png" alt="Pella" loading="lazy"></li><li><img src="img/logos/masonite.png" alt="Masonite" loading="lazy"></li><li><img src="img/logos/larson.png" alt="Larson" loading="lazy"></li><li><img src="img/logos/clopay.png" alt="Clopay" loading="lazy"></li><li><img src="img/logos/alside.png" alt="Alside Window Systems" loading="lazy"></li><li><img src="img/logos/emtek.png" alt="Emtek" loading="lazy"></li><li><img src="img/logos/baldwin.png" alt="Baldwin" loading="lazy"></li><li><img src="img/logos/reeb.png" alt="Reeb" loading="lazy"></li><li><img src="img/logos/nova.png" alt="Nova Doors & Hardware" loading="lazy"></li><li><img src="img/logos/crystal.png" alt="Crystal Window & Door" loading="lazy"></li><li><img src="img/logos/gsl.png" alt="Garden State Lumber Products" loading="lazy"></li><li><img src="img/logos/megahandles.png" alt="Mega Handles" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/thermatru.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/pella.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/masonite.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/larson.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/clopay.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/alside.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/emtek.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/baldwin.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/reeb.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/nova.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/crystal.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/gsl.png" alt="" loading="lazy"></li><li aria-hidden="true"><img src="img/logos/megahandles.png" alt="" loading="lazy"></li></ul></div>
 </section>
 
 <section class="proc" id="process" aria-labelledby="pr-h">
@@ -416,6 +436,30 @@ footer .bot a{color:#A9ABB1;text-decoration:none}
  // door-leaf reveals: tiles get .in from common.js reveal groups; make sure tiles themselves receive the class
  if(document.documentElement.classList.contains('anim')&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});[].slice.call(document.querySelectorAll('.tile')).forEach(function(t,i){t.style.setProperty('--d',(i%4*0.12).toFixed(2)+'s');io.observe(t)})}
  var bar=document.querySelector('.mbar'),bk=document.getElementById('book');if(bar&&bk&&'IntersectionObserver' in window){new IntersectionObserver(function(e){bar.classList.toggle('hide',e[0].isIntersecting)},{threshold:.2}).observe(bk)}
+})();
+</script>
+<script>
+(function(){
+ var vp=document.querySelector('[data-bvp]'),tr=document.querySelector('[data-btrack]');if(!vp||!tr)return;
+ var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,pb=document.querySelector('[data-bpause]');
+ var x=0,half=0,step=0,hover=false,paused=rm,anim=null,last=0,speed=38;
+ var measure=function(){half=tr.scrollWidth/2;var li=tr.children;step=li[1].getBoundingClientRect().left-li[0].getBoundingClientRect().left};
+ var wrap=function(){while(x<=-half)x+=half;while(x>0)x-=half};
+ var paint=function(){tr.style.transform='translate3d('+x.toFixed(2)+'px,0,0)'};
+ var loop=function(t){if(!last)last=t;var dt=Math.min(64,t-last);last=t;if(!paused&&!hover&&!anim){x-=speed*dt/1000;wrap();paint()}requestAnimationFrame(loop)};
+ var jump=function(dir){if(anim)return;var from=x,to=Math.round((x-dir*step)/step)*step,t0=null,d=rm?1:450;anim=1;
+  var f=function(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);x=from+(to-from)*e;paint();if(k<1)requestAnimationFrame(f);else{x=to;wrap();paint();anim=null}};
+  if(dir<0&&to>0){x-=half;from-=half;to-=half}requestAnimationFrame(f)};
+ document.querySelector('[data-bnext]').addEventListener('click',function(){jump(1)});
+ document.querySelector('[data-bprev]').addEventListener('click',function(){jump(-1)});
+ pb.setAttribute('aria-pressed',String(paused));pb.setAttribute('aria-label',paused?'Play brand carousel':'Pause brand carousel');
+ pb.addEventListener('click',function(){paused=!paused;pb.setAttribute('aria-pressed',String(paused));pb.setAttribute('aria-label',paused?'Play brand carousel':'Pause brand carousel')});
+ vp.addEventListener('mouseenter',function(){hover=true});vp.addEventListener('mouseleave',function(){hover=false});
+ var sx=null,sx0=0;vp.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sx0=x;hover=true},{passive:true});
+ vp.addEventListener('touchmove',function(e){if(sx===null)return;x=sx0+(e.touches[0].clientX-sx);wrap();paint()},{passive:true});
+ vp.addEventListener('touchend',function(){sx=null;hover=false});
+ var go=function(){measure();paint();requestAnimationFrame(loop)};
+ if(document.readyState==='complete')go();else addEventListener('load',go);addEventListener('resize',measure);
 })();
 </script>
 <script src="common.js?v=3"></script>
